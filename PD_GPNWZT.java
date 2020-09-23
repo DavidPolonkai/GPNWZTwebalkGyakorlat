@@ -9,6 +9,7 @@ public static double mul(int a, int b);
 
 //master comment here
 //another comment
+//one more comment
 
 public static double add(double a,double b){
   return a+b;
