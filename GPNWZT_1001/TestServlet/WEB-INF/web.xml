@@ -14,6 +14,11 @@
       <servlet-name>EchoServlet</servlet-name>
       <servlet-class>test.EchoServlet</servlet-class>
    </servlet>
+   
+   <servlet>
+      <servlet-name>SessionServlet</servlet-name>
+      <servlet-class>test.SessionServlet</servlet-class>   
+   </servlet>
  
    <!-- Note: All <servlet> elements MUST be grouped together and
          placed IN FRONT of the <servlet-mapping> elements -->
@@ -29,4 +34,8 @@
       <url-pattern>/echo</url-pattern>
    </servlet-mapping>
    
+   <servlet-mapping>
+      <servlet-name>SessionServlet</servlet-name>
+      <url-pattern>/session</url-pattern>
+   </servlet-mapping>
 </web-app>
