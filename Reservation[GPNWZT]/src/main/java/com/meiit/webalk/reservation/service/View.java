@@ -93,7 +93,9 @@ public class View implements IView {
 
     public void printCheckOut(BookingPerson bookingPerson, Reservation reservation) {
         System.out.println("Check out!");
-        System.out.println("Surprise you are the 100th guest you got 10% refund");
+    }
 
+    public void printSurprise() {
+        System.out.println("Surprise you are the 100th guest you got 10% refund");
     }
 }

@@ -3,6 +3,7 @@ package com.meiit.webalk.reservation.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.math.BigDecimal;
+import java.math.MathContext;
 
 import com.meiit.webalk.reservation.domain.BookingPerson;
 import com.meiit.webalk.reservation.domain.Floor;
@@ -64,9 +65,10 @@ public class ReservationService implements IReservationService {
     }
 
     public void checkOut(View view) {
+        view.printSurprise();
         for (Reservation r : bp.getReservations()) {
             view.printCheckOut(bp, r);
-            bp.setBalance((bp.getBalance().add(r.getAmount().multiply(new BigDecimal(0.1)))));
+            bp.setBalance((bp.getBalance().add(r.getAmount().multiply(new BigDecimal(0.1)))).round(new MathContext(0)));
         }
         view.printBalace(bp);
 
