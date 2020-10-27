@@ -59,17 +59,22 @@ public class ReservationService implements IReservationService {
     }
 
     public void checkIn(View view) {
+        //1 person how able to check in multiple hotels?
         for (Reservation r : bp.getReservations()) {
+            //based on documentation View is not permitted to call from service
             view.printCheckIn(r);
         }
     }
 
     public void checkOut(View view) {
         view.printSurprise();
+        //Same like check in
         for (Reservation r : bp.getReservations()) {
+            //based on documentation View is not permitted to call from service
             view.printCheckOut(bp, r);
             bp.setBalance((bp.getBalance().add(r.getAmount().multiply(new BigDecimal(0.1)))).round(new MathContext(0)));
         }
+        //based on documentation View is not permitted to call from service
         view.printBalace(bp);
 
     }
