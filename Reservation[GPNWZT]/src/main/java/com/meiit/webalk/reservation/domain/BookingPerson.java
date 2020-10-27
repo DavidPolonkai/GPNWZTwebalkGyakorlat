@@ -11,6 +11,7 @@ public class BookingPerson extends User {
     private BigDecimal balance;
     private LocalDate birth;
     private Currency currency;
+    //Person dont have reservation list field
     private List<Reservation> reservations;
 
     public BookingPerson(String name, String account, BigDecimal balance, LocalDate birth, Currency currency) {
