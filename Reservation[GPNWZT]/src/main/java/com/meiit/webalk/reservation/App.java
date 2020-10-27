@@ -9,6 +9,7 @@ import com.meiit.webalk.reservation.service.ReservationService;
 import com.meiit.webalk.reservation.service.View;
 
 public final class App {
+    //Print and view should be in separetad folders!!
     private ReservationService reservationService;
     private View view;
 
