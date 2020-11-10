@@ -12,6 +12,7 @@ import com.meiit.webalk.reservation.domain.Reservation;
 import com.meiit.webalk.reservation.domain.Room;
 import com.meiit.webalk.reservation.domain.Wing;
 import com.meiit.webalk.reservation.domain.WingType;
+import com.meiit.webalk.reservation.view.View;
 
 public class ReservationService implements IReservationService {
     private List<Hotel> hotels;
@@ -51,31 +52,28 @@ public class ReservationService implements IReservationService {
     }
 
     public void saveReservation(Reservation r) {
-        bp.getReservations().add(r);
+        bp.setReservation(r);
     }
 
-    public List<Reservation> findAllreservations() {
-        return bp.getReservations();
+    public List<Reservation> findALLreservations() {
+        List<Reservation> ret = new ArrayList<Reservation>();
+        ret.add(bp.getReservation());
+        return ret;
     }
 
-    public void checkIn(View view) {
-        //1 person how able to check in multiple hotels?
-        for (Reservation r : bp.getReservations()) {
-            //based on documentation View is not permitted to call from service
-            view.printCheckIn(r);
-        }
+    public void checkIn() {
+        // 1 person how able to check in multiple hotels
+        // based on documentation View is not permitted to call from service
     }
 
-    public void checkOut(View view) {
-        view.printSurprise();
-        //Same like check in
-        for (Reservation r : bp.getReservations()) {
-            //based on documentation View is not permitted to call from service
-            view.printCheckOut(bp, r);
-            bp.setBalance((bp.getBalance().add(r.getAmount().multiply(new BigDecimal(0.1)))).round(new MathContext(0)));
-        }
-        //based on documentation View is not permitted to call from service
-        view.printBalace(bp);
+    public void checkOut() {
+        // view.printSurprise();
+        // Same like check in
+        // based on documentation View is not permitted to call from service
+        // view.printCheckOut(bp, r);
+        bp.setBalance((bp.getBalance().add(bp.getReservation().getAmount().multiply(new BigDecimal(0.1))))
+                .round(new MathContext(0)));
+        // based on documentation View is not permitted to call from service
 
     }
 }

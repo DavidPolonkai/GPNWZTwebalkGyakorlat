@@ -1,4 +1,4 @@
-package com.meiit.webalk.reservation.service;
+package com.meiit.webalk.reservation.view;
 
 import com.meiit.webalk.reservation.domain.BookingPerson;
 import com.meiit.webalk.reservation.domain.Hotel;
@@ -25,5 +25,5 @@ public interface IView {
 
     public void printCheckIn(Reservation reservation);
 
-    public void printCheckOut(BookingPerson bookingPerson, Reservation reservation);
+    public void printCheckOut();
 }

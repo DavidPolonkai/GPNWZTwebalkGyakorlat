@@ -6,10 +6,11 @@ import java.time.LocalDate;
 import com.meiit.webalk.reservation.domain.Reservation;
 import com.meiit.webalk.reservation.domain.Room;
 import com.meiit.webalk.reservation.service.ReservationService;
-import com.meiit.webalk.reservation.service.View;
+import com.meiit.webalk.reservation.view.View;
 
 public final class App {
-    //Print and view should be in separetad folders!!
+    // Print and view should be in separetad folders!!
+    // I separated them as shown in the documentations.
     private ReservationService reservationService;
     private View view;
 
@@ -22,9 +23,14 @@ public final class App {
         App app = new App(new ReservationService(), new View());
         app.createBookingPerson();
         app.book();
-        app.reservationService.checkIn(app.view);
+
+        app.reservationService.checkIn();
+        app.view.printCheckIn(app.reservationService.findALLreservations().get(0));
         System.out.println("Few days later");
-        app.reservationService.checkOut(app.view);
+        app.reservationService.checkOut();
+        app.view.printSurprise();
+        app.view.printCheckOut();
+        app.view.printBalace(app.reservationService.findBookingPerson());
     }
 
     public void createBookingPerson() {
@@ -47,8 +53,10 @@ public final class App {
                 reservation.setRoom(room);
                 reservationService.saveReservation(reservation);
                 view.printReservationSaved(reservation);
-            } else
+                room = null;
+            } else {
                 view.printNotEnoughBalance(reservationService.findBookingPerson());
+            }
         } while (room != null);
     }
 }

@@ -1,4 +1,4 @@
-package com.meiit.webalk.reservation.service;
+package com.meiit.webalk.reservation.view;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ public class View implements IView {
     }
 
     public void printBalace(BookingPerson bookingPerson) {
-        System.out.println("Your balance is: " + bookingPerson.getBalance());
+        System.out.println("Your balance is: " + bookingPerson.getBalance().toBigInteger());
     }
 
     public void printRooms(List<Room> rooms) {
@@ -91,7 +91,7 @@ public class View implements IView {
                 + reservation.getRoom().getNumber());
     }
 
-    public void printCheckOut(BookingPerson bookingPerson, Reservation reservation) {
+    public void printCheckOut() {
         System.out.println("Check out!");
     }
 

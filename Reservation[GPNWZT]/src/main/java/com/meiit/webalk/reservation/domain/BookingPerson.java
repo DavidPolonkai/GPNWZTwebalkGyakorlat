@@ -11,8 +11,8 @@ public class BookingPerson extends User {
     private BigDecimal balance;
     private LocalDate birth;
     private Currency currency;
-    //Person dont have reservation list field
-    private List<Reservation> reservations;
+    // Person dont have reservation list field
+    private Reservation reservation;
 
     public BookingPerson(String name, String account, BigDecimal balance, LocalDate birth, Currency currency) {
         super();
@@ -21,7 +21,7 @@ public class BookingPerson extends User {
         this.balance = balance;
         this.birth = birth;
         this.currency = currency;
-        reservations = new ArrayList<>();
+        this.reservation = null;
     }
 
     public BookingPerson(String email, String password, String name, String account, BigDecimal balance,
@@ -32,12 +32,11 @@ public class BookingPerson extends User {
         this.balance = balance;
         this.birth = birth;
         this.currency = currency;
-        this.reservations = new ArrayList<>();
+        this.reservation = null;
     }
 
     public BookingPerson() {
         super();
-        this.reservations = new ArrayList<>();
     }
 
     public String getName() {
@@ -72,12 +71,12 @@ public class BookingPerson extends User {
         this.birth = birth;
     }
 
-    public List<Reservation> getReservations() {
-        return reservations;
+    public Reservation getReservation() {
+        return reservation;
     }
 
-    public void setReservations(List<Reservation> reservations) {
-        this.reservations = reservations;
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
     }
 
     public Currency getCurrency() {
@@ -91,6 +90,6 @@ public class BookingPerson extends User {
     @Override
     public String toString() {
         return "BookingPerson [account=" + account + ", balance=" + balance + ", birth=" + birth + ", currency="
-                + currency + ", name=" + name + ", reservations=" + reservations + "]";
+                + currency + ", name=" + name + ", reservations=" + reservation + "]";
     }
 }
