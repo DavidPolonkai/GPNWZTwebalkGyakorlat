@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head >
+    <body>
+        <div class="content">
+        <h1>Factory form</h1>
+        <br/><br/>
+        <form method="POST" 
+          action="#" th:action="@{/update}" th:object="${factory}">
+             <table class="formtable">
+                <tr style="display: none;">
+                    <td><label path="id">Id</label></td>
+                    <td><input path="id" th:field="*{id}" /></td>
+                </tr>
+                <tr>
+                    <td><label path="name">Name</label></td>
+                    <td><input type="text" th:field="*{fname}" /></td>
+                </tr>
+                <tr>
+                    <td><label path="size">Sizes</label></td>
+                    <td><input type="number" th:field="*{size}"/></td>
+                </tr>
+                <tr>
+                    <td><label path="city">City</label></td>
+                    <td><input type="text" th:field="*{city}"/></td>
+                </tr>
+                    
+                    
+            </table>
+        
+        <br/><br/>
+            <input class="bs" type="submit" value="Submit"/>
+            <a href="index" class="bs">Cancel</a>
+        </form>
+        </div>
+    </body>
+</html>

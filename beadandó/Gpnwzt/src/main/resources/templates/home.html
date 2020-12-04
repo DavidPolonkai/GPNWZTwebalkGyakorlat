@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <title>Welcome</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body style="text-align: center;">
+        <div class="content">
+        <h1 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]!</h1>
+        <a href="index" class="select">Factories</a>
+        <br/>
+        <br/>
+        <form style="text-align: left;" th:action="@{/logout}" method="post">
+            <input  class="bs" type="submit" value="Sign Out"/>
+        </form>
+        </div>
+    </body>
+</html>

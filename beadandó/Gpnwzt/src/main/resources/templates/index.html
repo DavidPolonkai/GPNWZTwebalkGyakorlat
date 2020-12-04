@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+   <head>
+      <meta charset = "ISO-8859-1" />
+      <title>Spring Boot Application</title>
+      <link rel="stylesheet" href="style.css">
+   </head>
+   <body>
+      <div class="content">
+      <h1>Factories</h1>
+      <table class="indextable">
+         <thead>
+            <tr>
+               <th colspan="2">Operations</th>
+               <th>Name</th>
+               <th>Size</th>
+               <th>City</th>
+            </tr>
+         </thead>
+         <tbody>
+         <tr th:each="str : ${list}">
+            <td>
+            <form action="#" th:action="@{/delete=} + ${{str.id}}" method="get">
+               <button class="bs" th:id="'table_entry_childs_button_' + ${str.id}" type="submit">
+                   <img src="https://image.flaticon.com/icons/png/512/61/61848.png">
+               </button>
+           </form>
+           </td>
+            <td>
+            <form action="#" th:action="@{/form=} + ${{str.id}}" method="get">
+               <button class="bs" th:id="'table_entry_childs_button_' + ${str.id}" type="submit">
+                   <img src="https://www.flaticon.com/svg/static/icons/svg/61/61456.svg">
+               </button>
+           </form>
+           </td>
+            <td style="display: none;"th:text=${str.id}></td>
+            <td th:text=${str.fname}></td>
+            <td th:text=${str.size}></td>
+            <td th:text=${str.city}></td>
+         </tr>
+         </tbody>
+      </table>
+      <br/><br/>
+      <a href="form" class="bs">Add new factory</a>
+      <br/><br/><br/>
+      <a href="home" class="bs" style="float: left;">Back to home</a>
+      </div>
+   </body>
+
+</html>
