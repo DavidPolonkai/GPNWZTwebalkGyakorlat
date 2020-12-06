@@ -3,7 +3,7 @@ class WebApplication {
 
     @RequestMapping("/")
     String home() {
-        "Hello World!"
+        "Polonkai Dávid GPNWZT"
     }
 	//the installization of the spring is not successful therefore only this file added
 
