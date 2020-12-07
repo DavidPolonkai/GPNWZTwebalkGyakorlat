@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head >
+    <body>
+        <div class="content">
+        <h1>Product form</h1>
+        <br/><br/>
+        <form method="POST" 
+          action="#" th:action="@{/produpdate}" th:object="${product}">
+             <table class="formtable">
+                <tr style="display: none;">
+                    <td><label path="id">Id</label></td>
+                    <td><input path="id" th:field="*{id}" /></td>
+                </tr>
+                <tr>
+                    <td><label path="pname">Name</label></td>
+                    <td><input type="text" th:field="*{pname}" /></td>
+                </tr>
+                <tr>
+                    <td><label path="prodprice">Production price</label></td>
+                    <td><input type="number" th:field="*{prodprice}"/></td>
+                </tr>
+                <tr>
+                    <td><label path="sizeclass">Size class</label></td>
+                    <td><input type="number" th:field="*{sizeclass}"/></td>
+                </tr>
+                    
+                    
+            </table>
+        
+        <br/><br/>
+            <input class="bs" type="submit" value="Submit"/>
+            <a href="prodindex" class="bs">Cancel</a>
+        </form>
+        </div>
+    </body>
+</html>

@@ -12,13 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class WebController {
+public class FactoryController {
+
     @Autowired
     private FactoryService factoryService;
 
@@ -31,7 +28,6 @@ public class WebController {
     @GetMapping("/form={ID}")
     public String formUpdate(@PathVariable(value = "ID") String id, Model model) throws IOException {
         try {
-            Long longid = Long.parseLong(id);
             model.addAttribute("factory", factoryService.findById(Long.parseLong(id)));
         } catch (NumberFormatException e) {
 

@@ -5,3 +5,10 @@ create table FACTORY(
  city varchar(200) not null
 );
 
+create table Product(
+    id long auto_increment primary key,
+    pname varchar(200) not null,
+    prodprice long not null,
+    sizeclass int not null
+);
+
