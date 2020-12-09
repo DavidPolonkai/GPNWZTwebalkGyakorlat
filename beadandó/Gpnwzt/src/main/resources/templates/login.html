@@ -6,8 +6,9 @@
         <link href="style.css" type="text/css" rel="stylesheet"/>
     </head>
     <body style="text-align: left;">
+        <div class=login>
         <h1>Login</h1>
-        <form th:action="@{/login}" method="post">
+        <form th:action="@{/login}" method="post" >
             <table>
             <tr>
                 <td>User Name:</td>
@@ -28,6 +29,7 @@
         </div>
         <div th:if="${param.logout}">
             You have been logged out.
+        </div>
         </div>
     </body>
 </html>
