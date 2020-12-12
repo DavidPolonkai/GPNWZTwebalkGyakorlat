@@ -1,4 +1,4 @@
-package com.meiit.webalk.reservation.domain;
+package com.meiit.webalk.GPNWZT;
 
 public enum Currency {
     HUF, EUR, USD;

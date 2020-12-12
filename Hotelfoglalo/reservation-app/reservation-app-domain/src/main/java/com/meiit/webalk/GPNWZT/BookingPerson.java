@@ -1,95 +1,53 @@
-package com.meiit.webalk.reservation.domain;
+package com.meiit.webalk.GPNWZT;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
-public class BookingPerson extends User {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
+
+@Entity
+@Data
+@NoArgsConstructor
+@RequiredArgsConstructor
+//@AllArgsConstructor
+public class BookingPerson {
+
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @NonNull
+    private int accountnumber;
+
+    @NonNull
     private String name;
-    private String account;
+    @NonNull
     private BigDecimal balance;
+    @NonNull
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private LocalDate birth;
+    @NonNull
+    @Column
     private Currency currency;
-    // Person dont have reservation list field
-    private Reservation reservation;
 
-    public BookingPerson(String name, String account, BigDecimal balance, LocalDate birth, Currency currency) {
-        super();
-        this.name = name;
-        this.account = account;
-        this.balance = balance;
-        this.birth = birth;
-        this.currency = currency;
-        this.reservation = null;
-    }
 
-    public BookingPerson(String email, String password, String name, String account, BigDecimal balance,
-            LocalDate birth) {
-        super(email, password);
-        this.name = name;
-        this.account = account;
-        this.balance = balance;
-        this.birth = birth;
-        this.currency = currency;
-        this.reservation = null;
-    }
 
-    public BookingPerson() {
-        super();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAccount() {
-        return account;
-    }
-
-    public void setAccount(String account) {
-        this.account = account;
-    }
-
-    public BigDecimal getBalance() {
-        return balance;
-    }
-
-    public void setBalance(BigDecimal balance) {
-        this.balance = balance;
-    }
-
-    public LocalDate getBirth() {
-        return birth;
-    }
-
-    public void setBirth(LocalDate birth) {
-        this.birth = birth;
-    }
-
-    public Reservation getReservation() {
-        return reservation;
-    }
-
-    public void setReservation(Reservation reservation) {
-        this.reservation = reservation;
-    }
-
-    public Currency getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(Currency currency) {
-        this.currency = currency;
-    }
-
-    @Override
-    public String toString() {
-        return "BookingPerson [account=" + account + ", balance=" + balance + ", birth=" + birth + ", currency="
-                + currency + ", name=" + name + ", reservations=" + reservation + "]";
-    }
 }

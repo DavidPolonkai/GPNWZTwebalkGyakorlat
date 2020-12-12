@@ -1,55 +1,42 @@
-package com.meiit.webalk.reservation.domain;
+package com.meiit.webalk.GPNWZT;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
+@Entity
+@Data
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class Wing {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @NonNull
     private String description;
+    @NonNull
+    @ManyToOne
     private Floor floor;
+    
+    @NonNull
     private WingType wingType;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "WING_ID")
     private List<Room> rooms;
 
-    public Wing(String description, Floor floor, WingType wingType) {
-        this.description = description;
-        this.floor = floor;
-        this.wingType = wingType;
-        this.rooms = new ArrayList<>();
-    }
-
-    public Wing() {
-        this.rooms = new ArrayList<>();
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Floor getFloor() {
-        return floor;
-    }
-
-    public void setFloor(Floor floor) {
-        this.floor = floor;
-    }
-
-    public List<Room> getRooms() {
-        return rooms;
-    }
-
-    public void setRooms(List<Room> rooms) {
-        this.rooms = rooms;
-    }
-
-    public WingType getWingType() {
-        return wingType;
-    }
-
-    public void setWingType(WingType wingType) {
-        this.wingType = wingType;
-    }
 
 }

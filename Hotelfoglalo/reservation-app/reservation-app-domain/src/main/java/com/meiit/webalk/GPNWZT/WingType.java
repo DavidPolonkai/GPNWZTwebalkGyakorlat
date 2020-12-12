@@ -1,4 +1,4 @@
-package com.meiit.webalk.reservation.domain;
+package com.meiit.webalk.GPNWZT;
 
 public enum WingType {
     NORTH("North"), EAST("East"), WEST("West"), SOUTH("South");

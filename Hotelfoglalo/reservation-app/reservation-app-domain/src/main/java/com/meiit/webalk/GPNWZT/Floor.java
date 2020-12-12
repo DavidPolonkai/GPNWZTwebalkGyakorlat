@@ -1,45 +1,42 @@
-package com.meiit.webalk.reservation.domain;
+package com.meiit.webalk.GPNWZT;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
+
+import org.hibernate.annotations.ManyToAny;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
+@Entity
+@Data
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class Floor {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @NonNull
     private int floorNumber;
-    private Hotel hotel;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="FLOOR_ID")
     private List<Wing> wings;
+    @NonNull
+    @ManyToOne
+    private Hotel hotel;
 
-    public Floor(int floorNumber, Hotel hotel) {
-        this.floorNumber = floorNumber;
-        this.hotel = hotel;
-        this.wings = new ArrayList<>();
-    }
-
-    public Floor() {
-
-    }
-
-    public int getFloorNumber() {
-        return floorNumber;
-    }
-
-    public void setFloorNumber(int floorNumber) {
-        this.floorNumber = floorNumber;
-    }
-
-    public Hotel getHotel() {
-        return hotel;
-    }
-
-    public void setHotel(Hotel hotel) {
-        this.hotel = hotel;
-    }
-
-    public List<Wing> getWings() {
-        return wings;
-    }
-
-    public void setWings(List<Wing> wings) {
-        this.wings = wings;
-    }
 
 }

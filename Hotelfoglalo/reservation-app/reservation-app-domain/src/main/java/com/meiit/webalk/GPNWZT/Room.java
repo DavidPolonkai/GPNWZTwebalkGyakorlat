@@ -1,62 +1,41 @@
-package com.meiit.webalk.reservation.domain;
+package com.meiit.webalk.GPNWZT;
 
+import java.math.BigDecimal;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
+
+
+@Entity
+@Data
+// @AllArgsConstructor
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class Room {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @NonNull
     private int number;
+    @NonNull
     private int beds;
+    @NonNull
     private boolean balcony;
-    private int price;
+    @NonNull
+    private BigDecimal price;
+    @NonNull
+    @ManyToOne
     private Wing wing;
 
-    public Room(int number, int beds, boolean balcony, int price, Wing wing) {
-        this.number = number;
-        this.beds = beds;
-        this.balcony = balcony;
-        this.price = price;
-        this.wing = wing;
-    }
-
-    public Room() {
-
-    }
-
-    public int getNumber() {
-        return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
-    }
-
-    public int getBeds() {
-        return beds;
-    }
-
-    public void setBeds(int beds) {
-        this.beds = beds;
-    }
-
-    public boolean isBalcony() {
-        return balcony;
-    }
-
-    public void setBalcony(boolean balcony) {
-        this.balcony = balcony;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public Wing getWing() {
-        return wing;
-    }
-
-    public void setWing(Wing wing) {
-        this.wing = wing;
-    }
 
 }

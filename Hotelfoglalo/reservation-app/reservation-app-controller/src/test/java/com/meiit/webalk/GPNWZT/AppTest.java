@@ -1,4 +1,4 @@
-package com.meiit.webalkGPNWZT;
+package com.meiit.webalk.GPNWZT;
 
 import static org.junit.Assert.assertTrue;
 

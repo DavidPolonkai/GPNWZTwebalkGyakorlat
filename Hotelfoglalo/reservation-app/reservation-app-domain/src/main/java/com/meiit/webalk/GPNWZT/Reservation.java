@@ -1,20 +1,35 @@
-package com.meiit.webalk.reservation.domain;
+package com.meiit.webalk.GPNWZT;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+
+@Entity
+@PrimaryKeyJoinColumn(referencedColumnName = "id")
 public class Reservation {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
     private BigDecimal amount;
-    private LocalDate from;
-    private LocalDate to;
+    private LocalDate rfrom;
+    private LocalDate rto;
     private boolean active;
     private boolean processed;
+    @ManyToOne
     private Room room;
 
-    public Reservation(BigDecimal amount, LocalDate from, LocalDate to, boolean active, boolean processed, Room room) {
+    public Reservation(BigDecimal amount, LocalDate rfrom, LocalDate rto, boolean active, boolean processed, Room room) {
         this.amount = amount;
-        this.from = from;
-        this.to = to;
+        this.rfrom = rfrom;
+        this.rto = rto;
         this.active = active;
         this.processed = processed;
         this.room = room;
@@ -32,20 +47,20 @@ public class Reservation {
         this.amount = amount;
     }
 
-    public LocalDate getFrom() {
-        return from;
+    public LocalDate getRfrom() {
+        return rfrom;
     }
 
-    public void setFrom(LocalDate from) {
-        this.from = from;
+    public void setRfrom(LocalDate from) {
+        this.rfrom = from;
     }
 
-    public LocalDate getTo() {
-        return to;
+    public LocalDate getRto() {
+        return rto;
     }
 
-    public void setTo(LocalDate to) {
-        this.to = to;
+    public void setRto(LocalDate to) {
+        this.rto = to;
     }
 
     public boolean isActive() {
@@ -66,8 +81,8 @@ public class Reservation {
 
     @Override
     public String toString() {
-        return "Reservation [active=" + active + ", amount=" + amount + ", from=" + from + ", processed=" + processed
-                + ", to=" + to + "]";
+        return "Reservation [active=" + active + ", amount=" + amount + ", from=" + rfrom + ", processed=" + processed
+                + ", to=" + rto + "]";
     }
 
     public Room getRoom() {
@@ -76,6 +91,14 @@ public class Reservation {
 
     public void setRoom(Room room) {
         this.room = room;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
 }
