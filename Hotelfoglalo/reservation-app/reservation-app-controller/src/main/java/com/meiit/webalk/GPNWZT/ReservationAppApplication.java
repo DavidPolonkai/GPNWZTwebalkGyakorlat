@@ -1,8 +1,6 @@
 package com.meiit.webalk.GPNWZT;
 
 
-import com.meiit.webalk.GPNWZT.testdata.TestDataGenerator;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

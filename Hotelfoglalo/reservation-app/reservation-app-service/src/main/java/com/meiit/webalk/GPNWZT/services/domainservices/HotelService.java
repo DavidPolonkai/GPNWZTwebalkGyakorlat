@@ -1,7 +1,6 @@
 package com.meiit.webalk.GPNWZT.services.domainservices;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.meiit.webalk.GPNWZT.Floor;
 import com.meiit.webalk.GPNWZT.Hotel;
@@ -20,12 +19,16 @@ public class HotelService {
 		return (List<Hotel>) hotelRepository.findAll();
 	}
 
-	public Optional<Hotel> findById(Long id) {
-		return hotelRepository.findById(id);
+	public Hotel findById(Long id) throws Exception {
+		return hotelRepository.findById(id).orElseThrow(()->new Exception("Server side error happened")); 
 	}
 
 	public  List<Floor> findFloorsByHotel(Hotel hotel){
 		return hotel.getFloors();
+	}
+
+	public void save(Hotel hotel){
+		hotelRepository.save(hotel);
 	}
 
 	

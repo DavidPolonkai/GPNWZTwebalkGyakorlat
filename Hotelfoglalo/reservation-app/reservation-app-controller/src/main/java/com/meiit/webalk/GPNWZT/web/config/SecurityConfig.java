@@ -1,6 +1,5 @@
 package com.meiit.webalk.GPNWZT.web.config;
 
-import com.meiit.webalk.GPNWZT.repositories.BookingPersonRepository;
 import com.meiit.webalk.GPNWZT.services.security.MyUserDetailsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +18,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 
     @Autowired
     private org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder BCryptPasswordEncoder;
-
-    @Autowired
-    private BookingPersonRepository bookingPersonRepository;
 
     @Autowired
     private MyUserDetailsService myUserDetailService;

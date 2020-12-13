@@ -9,7 +9,6 @@ import com.meiit.webalk.GPNWZT.BookingPerson;
 import com.meiit.webalk.GPNWZT.Currency;
 import com.meiit.webalk.GPNWZT.Floor;
 import com.meiit.webalk.GPNWZT.Hotel;
-import com.meiit.webalk.GPNWZT.Reservation;
 import com.meiit.webalk.GPNWZT.Room;
 import com.meiit.webalk.GPNWZT.User;
 import com.meiit.webalk.GPNWZT.Wing;
@@ -17,13 +16,12 @@ import com.meiit.webalk.GPNWZT.WingType;
 import com.meiit.webalk.GPNWZT.repositories.BookingPersonRepository;
 import com.meiit.webalk.GPNWZT.repositories.FloorRepository;
 import com.meiit.webalk.GPNWZT.repositories.HotelRepository;
-import com.meiit.webalk.GPNWZT.repositories.ReservationRepository;
 import com.meiit.webalk.GPNWZT.repositories.RoomRepository;
 import com.meiit.webalk.GPNWZT.repositories.UserRepository;
 import com.meiit.webalk.GPNWZT.repositories.WingRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -35,8 +33,6 @@ public class TestDataGenerator implements CommandLineRunner {
     private FloorRepository floorRepository;
     @Autowired
     private HotelRepository hotelRepository;
-    @Autowired
-    private ReservationRepository reservationRepository;
     @Autowired
     private RoomRepository roomRepository;
     @Autowired
@@ -107,23 +103,10 @@ public class TestDataGenerator implements CommandLineRunner {
         wings1.get(0).setRooms(rooms2);
         wings2.get(0).setRooms(rooms3);
 
-
-
-        
-        
-
-
-        // hotels.add(hotel);
-
         hotelRepository.saveAll(hotels);
         floorRepository.saveAll(floors);
         wingRepository.saveAll(wings);
         roomRepository.saveAll(rooms);
-
-
-
-
-
 
         User user = new User("u", passwordEncoder.encode("u"), new BookingPerson());
         BookingPerson bookingPerson = new BookingPerson(10,"name", new BigDecimal(2000),LocalDate.of(2000, 04, 20), Currency.EUR);
@@ -132,7 +115,5 @@ public class TestDataGenerator implements CommandLineRunner {
         bookingPersonRepository.save(bookingPerson);
         userRepository.save(user);
 
-
-        System.out.println(userRepository.findAll());
     }
 }

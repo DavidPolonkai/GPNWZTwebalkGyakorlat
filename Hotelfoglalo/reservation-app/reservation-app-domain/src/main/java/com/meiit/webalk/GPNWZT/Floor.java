@@ -1,6 +1,5 @@
 package com.meiit.webalk.GPNWZT;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,19 +10,18 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
-
-import org.hibernate.annotations.ManyToAny;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
+@ToString
 public class Floor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

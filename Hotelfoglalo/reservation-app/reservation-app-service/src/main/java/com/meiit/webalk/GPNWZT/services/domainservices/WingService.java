@@ -1,7 +1,6 @@
 package com.meiit.webalk.GPNWZT.services.domainservices;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.meiit.webalk.GPNWZT.Room;
 import com.meiit.webalk.GPNWZT.Wing;
@@ -16,8 +15,8 @@ public class WingService {
     @Autowired
     private WingRepository wingRepository;
 
-    public Optional<Wing> findById(Long id){
-        return wingRepository.findById(id);
+    public Wing findById(Long id) throws Exception {
+        return wingRepository.findById(id).orElseThrow(()->new Exception("Server side error happened"));
     }
 
     public List<Room> findRoomsByWing(Wing wing){

@@ -2,6 +2,9 @@
 <!--/*@thymesVar id="room" type="com.meiit.webalk.GPNWZT.Room"*/-->
 <html lang="en">
 <head>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <title>Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -70,21 +73,21 @@
     </div>
 </div>
 <div class="card" style=" margin: 2vw; ">
-    <div class="card-header bg-primary text-white">Wings and floors</div>
-    <div class="card-body">    
-      <form class="form-group" action="@{/create-reservation=}+${{room.id}}" th:object="${room}" method="GET">
-            <select class="form-control" >
-                <option th:each="room:${rooms}" th:value="${room.id}" th:text="${room.toString()}">
-                </option>
+    <div class="card-header bg-primary text-white">Rooms</div>
+    <div class="card-body">     
+        <form class="form-group" action="#" th:action="@{/bookroom}" th:object="${room}" method="post">
+            <select class="form-control" th:name="id">
+              <option th:each=" room:${rooms}" th:value="${room.id}" >
+                  <td th:text="'Room price: '+${room.price}"></td>
+                  <td th:text="'Room Number: '+${room.number}"></td>
+                  <td th:text="'No. of beds: '+${room.beds}"></td>
+                  <td th:text="${room.balcony}==true?'':'balcony'"></td>
+              </option>
             </select>
-            <br>
-            <input class="btn btn-primary" th:id="'button'+${wing.getId()}" type="submit" name="submit" value="Book selected room">
-        </form>
-        <a href="javascript:history.back()" class="btn btn-primary" value="Book selected room">Cancel</a>
+            <input class="btn btn-primary" type="submit" name="submit" value="Select">
+          </form>
+          <a href="javascript:history.back()" class="btn btn-primary" value="Book selected room">Cancel</a>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>

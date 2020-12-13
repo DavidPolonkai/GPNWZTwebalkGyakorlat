@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <title>Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -67,14 +70,44 @@
         </form>
     </div>
 </div>
-<div class="card" style=" margin: 2vw; ">
+<div  th:style="${reservations.isEmpty()?'display:none;':'display:block;margin: 2vw;'}"  class="card">
     <div class="card-header bg-primary text-white">Books</div>
     <div class="card-body">
-
+      <table class="table">
+        <thead>
+           <th></th>
+           <th>Hotel</th>
+           <th>Amount</th>
+           <th>From</th>
+           <th>To</th>
+           <th>Active</th>
+           <th>Processed</th>
+           <th>Room number</th>
+           <th>No. of beds</th>
+           <th></th>
+           <th></th>
+        </thead>
+        <tbody>
+          <tr th:each="reservation:${reservations}">
+            <td>
+              <form action="#" th:action="@{/deletereservation=}+${{reservation.getId()}}" method="GET">
+                <button class="btn btn-primary" th:id="'button'+${reservation.getId()}" type="submit">
+                  Check out
+                </button>
+              </form>
+            </td>
+            <td th:text="${reservation.room.wing.floor.hotel.name}"></td>
+            <td th:text="${reservation.amount}"></td>
+            <td th:text="${reservation.rfrom}"></td>
+            <td th:text="${reservation.rto}"></td>
+            <td th:text="${reservation.active}"></td>
+            <td th:text="${reservation.processed}"></td>
+            <td th:text="${reservation.room.number}"></td>
+            <td th:text="${reservation.room.beds}"></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>

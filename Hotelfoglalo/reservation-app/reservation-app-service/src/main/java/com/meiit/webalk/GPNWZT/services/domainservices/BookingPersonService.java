@@ -10,15 +10,22 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BookingPersonService {
-    
+
     @Autowired
     private BookingPersonRepository bookingPersonRepository;
 
-    public List<BookingPerson> findAll(){
+    public List<BookingPerson> findAll() {
         return (List<BookingPerson>) bookingPersonRepository.findAll();
     }
 
-    public void save(BookingPerson bookingPerson){
+    public void save(BookingPerson bookingPerson) {
         bookingPersonRepository.save(bookingPerson);
     }
+
+    public BookingPerson findById(Long id) throws Exception {
+        return bookingPersonRepository.findById(id).orElseThrow(()->new Exception("Server side error happened")); 
+
+    }
+
+
 }
