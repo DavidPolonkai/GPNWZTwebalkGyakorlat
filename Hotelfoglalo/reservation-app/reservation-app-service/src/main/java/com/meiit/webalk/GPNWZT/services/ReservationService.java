@@ -19,6 +19,7 @@ import com.meiit.webalk.GPNWZT.services.domainservices.ReservService;
 import com.meiit.webalk.GPNWZT.services.domainservices.RoomService;
 import com.meiit.webalk.GPNWZT.services.domainservices.UserService;
 import com.meiit.webalk.GPNWZT.services.domainservices.WingService;
+import com.meiit.webalk.GPNWZT.services.exceptions.NotEnoughBalance;
 import com.meiit.webalk.GPNWZT.services.security.MyUserPrincipal;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -123,14 +124,8 @@ public class ReservationService implements IReservationService {
         return findBookingPerson().getReservations();
     }
 
-    
-
-    /*
-     * public List<Reservation> findALLreservations() { List<Reservation> ret = new
-     * ArrayList<Reservation>(); //ret.add(bp.getReservation()); //return ret; }
-     */
-
-    public void checkIn(Room room) throws Exception {
+    @Override
+    public void checkIn(Room room) throws NotEnoughBalance{
         Reservation reservation =new Reservation(room.getPrice(), LocalDate.now(), LocalDate.now().plusDays(3), true, true);
         BookingPerson bookingPerson=findBookingPerson();
         if (bookingPerson.getBalance().compareTo(reservation.getAmount())>=0){
@@ -141,9 +136,10 @@ public class ReservationService implements IReservationService {
 
         bookingPersonService.save(bookingPerson);
         reservService.save(reservation);
-        }else throw new com.meiit.webalk.GPNWZT.services.exceptions.NotEnoughtBalance();
+        }else throw new NotEnoughBalance();
     }
 
+    @Override
     public void checkOut(Long id) throws Exception {
         BookingPerson bookingPerson=findBookingPerson();
         Reservation reservation=reservService.findById(id);
@@ -155,15 +151,5 @@ public class ReservationService implements IReservationService {
 
 
 
-    @Override
-    public void checkIn() {
-        // TODO Auto-generated method stub
 
-    }
-
-    @Override
-    public void checkOut() {
-        
-
-    }
 }

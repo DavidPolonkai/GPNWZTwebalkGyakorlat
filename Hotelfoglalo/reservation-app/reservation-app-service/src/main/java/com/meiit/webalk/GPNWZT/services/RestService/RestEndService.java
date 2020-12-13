@@ -43,15 +43,16 @@ public class RestEndService {
         roomService.save(room);
     }
 
-    public void createUser(User user,BookingPerson bookingPerson){
+    public void createUser(User user){
+        BookingPerson bookingPerson = new BookingPerson();
+        bookingPersonService.save(bookingPerson);
         user.setBookingPerson(bookingPerson);
         userService.save(user);
-        bookingPersonService.save(bookingPerson);
     }
 
-    public BookingPerson userInfo(Long id){
+    public User userInfo(Long id){
         try{
-            return bookingPersonService.findById(id);
+            return userService.findById(id);
         }catch(Exception e){
             return null;
         }

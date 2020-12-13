@@ -1,7 +1,7 @@
 package com.meiit.webalk.GPNWZT.services.exceptions;
 
-public class NotEnoughtBalance extends Exception{
-    public NotEnoughtBalance(){
+public class NotEnoughBalance extends Exception{
+    public NotEnoughBalance(){
         super("Not Enought Balance");
     }
     

@@ -32,17 +32,18 @@ public class RestEndController {
     }
 
     @PostMapping("/create-user")
-    public void createUser(User user, BookingPerson bookingPerson) {
-        restEndService.createUser(user, bookingPerson);
+    public void createUser(User user) {
+        restEndService.createUser(user);
     }
 
     @GetMapping("/user-info")
-    public ResponseEntity<BookingPerson> getUserInfo(Long id) {
-        BookingPerson bookingPerson = restEndService.userInfo(id);
-        if (bookingPerson == null)
+    public ResponseEntity<User> getUserInfo(Long id) {
+        User user = restEndService.userInfo(id);
+        System.out.println(user.getId());
+        if (user == null)
             return ResponseEntity.notFound().build();
         else
-            return ResponseEntity.ok(bookingPerson);
+            return ResponseEntity.ok(user);
     }
 
     @GetMapping("/show-reservations")

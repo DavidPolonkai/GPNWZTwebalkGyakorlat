@@ -35,7 +35,7 @@
             </div>
             <input type="submit" name="submit" class="btn-primary btn-lg" value="Login"/>
         </form>
-        <div th:text="${fail}"  class="alert"></div>
+        <div th:text="${fail}"  th:class="${'alert ' + alertClass }"></div>
     </div>
 </div>
 </body>

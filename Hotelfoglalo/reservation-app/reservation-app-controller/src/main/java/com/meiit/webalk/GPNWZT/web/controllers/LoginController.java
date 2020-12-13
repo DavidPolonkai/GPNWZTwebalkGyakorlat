@@ -23,6 +23,7 @@ public class LoginController {
     public String login(@RequestParam Optional<String> fail,Model model){
         if (fail.isPresent() && fail.get().equals("true")){
             model.addAttribute("fail", "Invalid password or username");
+            model.addAttribute("alertClass","alert-danger");
         }
         else model.addAttribute("fail","");
         return "login";

@@ -71,7 +71,7 @@
     </div>
 </div>
 <div  th:style="${reservations.isEmpty()?'display:none;':'display:block;margin: 2vw;'}"  class="card">
-    <div class="card-header bg-primary text-white">Books</div>
+    <div class="card-header bg-primary text-white">Bookings</div>
     <div class="card-body">
       <table class="table">
         <thead>
@@ -80,8 +80,6 @@
            <th>Amount</th>
            <th>From</th>
            <th>To</th>
-           <th>Active</th>
-           <th>Processed</th>
            <th>Room number</th>
            <th>No. of beds</th>
            <th></th>
@@ -100,8 +98,6 @@
             <td th:text="${reservation.amount}"></td>
             <td th:text="${reservation.rfrom}"></td>
             <td th:text="${reservation.rto}"></td>
-            <td th:text="${reservation.active}"></td>
-            <td th:text="${reservation.processed}"></td>
             <td th:text="${reservation.room.number}"></td>
             <td th:text="${reservation.room.beds}"></td>
           </tr>

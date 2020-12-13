@@ -108,12 +108,13 @@ public class TestDataGenerator implements CommandLineRunner {
         wingRepository.saveAll(wings);
         roomRepository.saveAll(rooms);
 
-        User user = new User("u", passwordEncoder.encode("u"), new BookingPerson());
+        User user = new User("a@a.a", passwordEncoder.encode("a"), new BookingPerson());
         BookingPerson bookingPerson = new BookingPerson(10,"name", new BigDecimal(2000),LocalDate.of(2000, 04, 20), Currency.EUR);
         user.setBookingPerson(bookingPerson);
 
         bookingPersonRepository.save(bookingPerson);
         userRepository.save(user);
+        System.out.println(userRepository.findAll().get(0).getId());
 
     }
 }
