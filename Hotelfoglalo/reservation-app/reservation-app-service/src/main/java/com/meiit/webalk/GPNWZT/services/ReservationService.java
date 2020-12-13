@@ -54,8 +54,8 @@ public class ReservationService implements IReservationService {
         bookingPersonService.save(bookingPerson);
     }
 
-    public void updateBookingPerson(BookingPerson bookingPerson){
-        BookingPerson oldbookingPerson=findBookingPerson();
+    public void updateBookingPerson(BookingPerson bookingPerson) {
+        BookingPerson oldbookingPerson = findBookingPerson();
         bookingPerson.setId(oldbookingPerson.getId());
         bookingPerson.setReservations(oldbookingPerson.getReservations());
         saveBookingPerson(bookingPerson);
@@ -109,7 +109,13 @@ public class ReservationService implements IReservationService {
     }
 
     public List<Room> findRooms(Wing wing) {
-        return wingService.findRoomsByWing(wing);
+        List<Room> rooms = wingService.findRoomsByWing(wing);
+        for (Reservation r : findALLreservations()) {
+            if (r.isActive()) {
+                rooms.remove(r.getRoom());
+            }
+        }
+        return rooms;
 
     }
 
@@ -118,38 +124,36 @@ public class ReservationService implements IReservationService {
 
     }
 
-    
     @Override
     public List<Reservation> findALLreservations() {
         return findBookingPerson().getReservations();
     }
 
     @Override
-    public void checkIn(Room room) throws NotEnoughBalance{
-        Reservation reservation =new Reservation(room.getPrice(), LocalDate.now(), LocalDate.now().plusDays(3), true, true);
-        BookingPerson bookingPerson=findBookingPerson();
-        if (bookingPerson.getBalance().compareTo(reservation.getAmount())>=0){
-        bookingPerson.setBalance(bookingPerson.getBalance().subtract(reservation.getAmount()));
-        reservation.setBookingPerson(bookingPerson);
-        reservation.setRoom(room);
-        bookingPerson.getReservations().add(reservation);
+    public void checkIn(Room room) throws NotEnoughBalance {
+        Reservation reservation = new Reservation(room.getPrice(), LocalDate.now(), LocalDate.now().plusDays(3), true,
+                true);
+        BookingPerson bookingPerson = findBookingPerson();
+        if (bookingPerson.getBalance().compareTo(reservation.getAmount()) >= 0) {
+            bookingPerson.setBalance(bookingPerson.getBalance().subtract(reservation.getAmount()));
+            reservation.setBookingPerson(bookingPerson);
+            reservation.setRoom(room);
+            bookingPerson.getReservations().add(reservation);
 
-        bookingPersonService.save(bookingPerson);
-        reservService.save(reservation);
-        }else throw new NotEnoughBalance();
+            bookingPersonService.save(bookingPerson);
+            reservService.save(reservation);
+        } else
+            throw new NotEnoughBalance();
     }
 
     @Override
     public void checkOut(Long id) throws Exception {
-        BookingPerson bookingPerson=findBookingPerson();
-        Reservation reservation=reservService.findById(id);
+        BookingPerson bookingPerson = findBookingPerson();
+        Reservation reservation = reservService.findById(id);
         bookingPerson.getReservations().remove(reservation);
 
         reservService.delete(id);
         bookingPersonService.save(bookingPerson);
     }
-
-
-
 
 }

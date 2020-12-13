@@ -75,6 +75,7 @@
 <div class="card" style=" margin: 2vw; ">
     <div class="card-header bg-primary text-white">Rooms</div>
     <div class="card-body">     
+      <span>
         <form class="form-group" action="#" th:action="@{/bookroom}" th:object="${room}" method="post">
             <select class="form-control" th:name="id">
               <option th:each=" room:${rooms}" th:value="${room.id}" >
@@ -84,9 +85,12 @@
                   <td th:text="${room.balcony}==true?'':'balcony'"></td>
               </option>
             </select>
+            <br>
             <input class="btn btn-primary" type="submit" name="submit" value="Select">
+            <a href="javascript:history.back()" class="btn btn-primary" value="Book selected room">Cancel</a>
           </form>
-          <a href="javascript:history.back()" class="btn btn-primary" value="Book selected room">Cancel</a>
+          
+        </span>
     </div>
 </div>
 </body>
